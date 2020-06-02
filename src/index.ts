@@ -1,4 +1,4 @@
-import {Observable, Observer} from 'rxjs';
+import {Observable, Observer, interval} from 'rxjs';
 
 const observer : Observer<any>={
     next: value => console.log('siguiente {next}: ' , value),
@@ -6,27 +6,29 @@ const observer : Observer<any>={
     complete: () => console.info('completador [obs]')
 }
 
-//const obs$ = Observable.create(); 
-const obs$ = new Observable<string>(subs => {
-    subs.next('paso')
-    subs.next('paso 1')
+const intervalo$ = new Observable( subcriber => { 
+    
+    // Crear un contador
+    let cont = 0;
 
-    subs.next('paso 2')
-    subs.next('paso 3')
+    const interval = setInterval(()=>{
+        //cada segundo
+        cont ++;
+        subcriber.next(cont);
+        console.log(cont)
 
-    //forzar un error
-    //const a = undefined;
-    //a.nombre = 'Hamilton ediel'
+    }, 1000)
 
-    subs.complete()
 
-    subs.next('pasos 4')
-    subs.next('paso 5')
+    return() => {
+        clearInterval(interval)
+        console.log('intervalo destruido')
+    }
+
 })
 
+const obs = intervalo$.subscribe(num => console.log('Num: ', num));
 
-obs$.subscribe(
-    valor => console.log('next: ' , valor),
-    valor => console.warn('next: ' , valor),
-    () => console.info('Completado')
-)
+setTimeout(()=>{
+    obs.unsubscribe()
+},3000)
