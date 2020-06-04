@@ -9,4 +9,6 @@ obs$.subscribe(next => {
     null,
     () => console.log('terminamos la secuencia')
 })
+
+
 //fin

@@ -3,7 +3,7 @@ import {filter} from 'rxjs/operators'
 
 const nuevoObservable = from("Wokanda A");
 
-const nuevoObservableFiltrado = nuevoObservable.pipe(  
+const nuevoObservableFiltrado = nuevoObservable.pipe(
     filter(char => char != 'A')
 )
 
