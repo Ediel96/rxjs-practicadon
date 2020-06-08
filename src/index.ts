@@ -1,11 +1,15 @@
-import {from} from 'rxjs';
-import {filter} from 'rxjs/operators'
+import { interval, timer } from 'rxjs';
 
-const nuevoObservable = from("Wokanda A");
+const observar = {
+    next: val => console.log('next:', val),
+    complete: () => console.log('complete'),
+}
 
-const nuevoObservableFiltrado = nuevoObservable.pipe(  
-    filter(char => char != 'A')
-)
+const interval$ = interval(1000);
+const timer$ = timer(5000)
 
 
-nuevoObservableFiltrado.subscribe(console.log);
+console.log('inicio');
+//interval$.subscribe(observar);
+timer$.subscribe(observar);
+console.log('fin');

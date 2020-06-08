@@ -42,4 +42,4 @@ obs1.add(obs2).add(obs3)
 
 setTimeout(()=>{
     obs1.unsubscribe()
-},3000)
+},3000);
