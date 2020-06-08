@@ -20,7 +20,7 @@ sr1$.subscribe( ({x, y}) =>{
 }) 
 
 
-//eneto con la teclas key = a ejemplo
+//evento con la teclas key = a 'Tecla'
 sr2$.subscribe(event => {
     console.log(event.key)
 })
